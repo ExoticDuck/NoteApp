@@ -1,0 +1,14 @@
+.AddItemForm {
+    
+    display: block;
+    width: 400px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.Input {
+    margin-top: 30px;
+    font-size: 15px;
+    padding: 10px;
+    border-radius: 10px;
+}
