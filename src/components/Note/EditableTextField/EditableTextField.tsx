@@ -1,9 +1,11 @@
 import React, { ChangeEvent, FormEvent, FormEventHandler, MouseEvent, useState } from "react";
 import s from "./EditableTextField.module.css"
+// import { HighlightWithinTextarea } from 'react-highlight-within-textarea';
 
 type EditableTextFieldPropsType = {
     text: string
     id: string
+    tag: string
     ChangeText: (newValue: string, id: string, newTag: string) => void
     addTag: (tagName: string) => void
 }
@@ -43,13 +45,16 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
 
     let onDoubleClickHandler = (e: MouseEvent<HTMLDivElement>) => {
         setEdit(true);
+        let MarkedText = props.tag;
+        let editValue = value.replace(MarkedText, `<span className={s.MarkedWord}>${MarkedText}</span>`);
+        setValue(editValue)
     }
 
     let onBlurHandler = () => {
         setEdit(false);
         getNewTag();
     }
-
+    
     if (edit) {
         return (
             <div>
@@ -57,7 +62,11 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
                     <textarea name="text" className={s.Textarea} cols={30} rows={10} value={value} onChange={onChangeHandler} onBlur={onBlurHandler}></textarea>
                 </div> */}
                 <div contentEditable onInput={onChangeHandler} onBlur={onBlurHandler}>{props.text}</div>
-            </div>
+                {/* <HighlightWithinTextarea
+                value={props.text}
+                highlight={props.id}
+            onChange={onChangeHandler}/>*/}
+                </div>  
         )
     } else {
         return (

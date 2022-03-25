@@ -30,6 +30,7 @@ const Note = React.memo((props: NotePropsType) => {
                 {props.noteText}
             </div> */}
             <EditableTextField 
+            tag={props.tag}
             text={props.noteText} 
             addTag={addTagCallback}
             ChangeText={props.ChangeText} 

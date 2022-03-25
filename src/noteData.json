@@ -1,0 +1,14 @@
+[
+    {
+        "id": "",
+        "name": "First Note",
+        "tag": "#shop",
+        "noteText": "What to buy: 1) Milk, 2) Butter, 3) Meat, 4) Cookies #shop"
+    },
+    {
+        "id": "",
+        "name": "Second Note",
+        "tag": "#study",
+        "noteText": "What to learn: 1) JS, 2) CSS, 3) React, 4) Redux #study"
+    }
+]

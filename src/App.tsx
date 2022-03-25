@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { v1 } from 'uuid';
 import './App.css';
+import tagData from "./tagData.json"
 import AddItemForm from './components/AddItemForm/AddItemForm';
 import NoteDisplay from './components/NoteDisplay/NoteDisplay';
 import TagsDisplay from './components/TagsDisplay/TagsDisplay';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootStateType } from './store/store';
+import { addTagAC, deleteTagAC, selectTagAC } from './store/tags-reducer';
+import { addNoteAC, changeNoteAC, deleteNoteAC } from './store/notes-reducer';
 
 export type NoteType = {
   id: string
@@ -19,45 +24,34 @@ export type TagType = {
 }
 
 function App() {
-  let [tags, setTags] = useState<Array<TagType>>([{id: v1(), tagName: "#shop", selected: true}, {id: v1(), tagName: "#study", selected: false}, {id: v1(), tagName: "#all", selected: false}]) 
-  let [notes, setNotes] = useState<Array<NoteType>>(
-    [
-      {id: v1(),name: "First Note", tag: "#shop", noteText: "What to buy: 1) Milk, 2) Butter, 3) Meat, 4) Cookies #shop"},
-      {id: v1(),name: "Second Note", tag: "#study", noteText: "What to learn: 1) JS, 2) CSS, 3) React, 4) Redux #study"},
-    ])
+  let tags = useSelector<AppRootStateType, Array<TagType>>(state => state.tags);
+  let notes = useSelector<AppRootStateType, Array<NoteType>>(state => state.notes);
+  const dispatch = useDispatch();
   let [selectedTag, setSelectedTag] = useState<string>("#all")
 
     let selectTag = (tagName: string) => {
       setSelectedTag(tagName);
-      let newTags = tags.map(tag => tag.tagName === tagName ? {...tag, selected: !tag.selected} : {...tag, selected: false});
-      setTags(newTags);
+      dispatch(selectTagAC(tagName))
     }
 
     let addNote = (title: string,) => {
-      let newNotes = [...notes, {id: v1(),name: title, tag: "#all", noteText: "Enter some text"}];
-      setNotes(newNotes);
+      dispatch(addNoteAC(title))
     }
 
     let deleteNote = (noteId: string) => {
-      let newNotes = notes.filter(note => note.id !== noteId);
-      setNotes(newNotes);
+      dispatch(deleteNoteAC(noteId))
     }
 
     let addTag = (tagName: string, noteId: string) => { //!note id
-      let double = tags.find(t => t.tagName === tagName);
-      if(double === undefined) {
-        setTags([...tags, {id: v1(), tagName: tagName, selected: false}])
-      }
+      dispatch(addTagAC(tagName));
     }
 
     let deleteTag = (id: string) => {
-      let newTags = tags.filter(t => t.id !== id);
-      setTags(newTags);
+      dispatch(deleteTagAC(id));
     }
 
     let ChangeText = (newValue: string, id: string, newTag: string) => {
-      let newNotes = notes.map(n => n.id === id ? {...n, noteText: newValue, tag: newTag} : n);
-      setNotes(newNotes);
+      dispatch(changeNoteAC(newValue, id, newTag));
     }
 
     let notesForDisplay = notes;
