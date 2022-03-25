@@ -1,18 +1,37 @@
 .Tag {
     display: inline-block;
-    width: 90px;
+    width: fit-content;
     height: 30px;
+    /* background-color: lightblue; */
+    border-radius: 15px;
+    border: 2px solid lightblue;
+    padding: 5px;
+    color: lightblue;
+    text-align: center;
+    margin-left: 10px;
+}
+
+.tagName {
+    display: inline-block;
+}
+.SelectedTag {
+    display: inline-block;
+    width: fit-content;
+    height: 32px;
     background-color: lightblue;
     border-radius: 15px;
+    padding: 5px;
     color: white;
     text-align: center;
+    margin-left: 10px;
 }
 
 .button {
+    margin-left: 5px;
     margin-top: 2px;
     text-align: center;
     width: 20px;
     display: inline-block;
     border-radius: 50%;
-    border: 2px solid white;
+    border: 2px solid lightblue;
 }

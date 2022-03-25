@@ -4,16 +4,16 @@ import s from "./Tag.module.css"
 type TagPropsType = {
     name: string
     id: string
+    selected: boolean
     deleteTag: (id: string) => void
+    selectTag: (tagName: string) => void
 }
-
-
 
 const Tag = (props: TagPropsType) => {
     
     return(
-        <div className={s.Tag}>
-            {props.name} <div className={s.button} onClick={() =>{props.deleteTag(props.id)}}>X</div>
+        <div className={props.selected ? s.SelectedTag : s.Tag}>
+            <div className={s.tagName} onClick={() => props.selectTag(props.name)}>{props.name}</div><div className={s.button} onClick={() =>{props.deleteTag(props.id)}}>X</div>
         </div>
     )
 }

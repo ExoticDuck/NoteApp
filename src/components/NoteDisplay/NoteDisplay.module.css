@@ -1,4 +1,9 @@
 .NoteDisplay {
-    width: 800px;
-    margin: 0 auto;
+    display: block;
+    width: 100%;
+    padding: 30px 80px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }

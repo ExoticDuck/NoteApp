@@ -6,12 +6,13 @@ import s from "./TagsDisplay.module.css"
 type TagsPropsType = {
     tags: Array<TagType>
     deleteTag: (id: string) => void
+    selectTag: (tagName: string) => void
 }
 
 
 const TagsDisplay = (props: TagsPropsType) => {
 
-    let mappedTags = props.tags.map(tag => <Tag key={tag.id} name={tag.tagName} id={tag.id} deleteTag={props.deleteTag}/>)
+    let mappedTags = props.tags.map(tag => <Tag key={tag.id} name={tag.tagName} id={tag.id} deleteTag={props.deleteTag} selected={tag.selected} selectTag={props.selectTag}/>)
     return(
         <div className={s.TagsDisplay}>
             {mappedTags}
