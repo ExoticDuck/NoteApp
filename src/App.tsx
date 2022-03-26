@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import { v1 } from 'uuid';
-import './App.css';
-import tagData from "./tagData.json"
+import './App.scss';
 import AddItemForm from './components/AddItemForm/AddItemForm';
 import NoteDisplay from './components/NoteDisplay/NoteDisplay';
 import TagsDisplay from './components/TagsDisplay/TagsDisplay';
@@ -42,7 +40,7 @@ function App() {
       dispatch(deleteNoteAC(noteId))
     }
 
-    let addTag = (tagName: string, noteId: string) => { //!note id
+    let addTag = (tagName: string, noteId: string) => { 
       dispatch(addTagAC(tagName));
     }
 

@@ -1,6 +1,6 @@
 import { v1 } from "uuid"
 import { NoteType } from "../App"
-import noteData from "../noteData.json"
+import noteData from "../Data/noteData.json"
 
 const ADD_NOTE = "ADD-NOTE"
 const DELETE_NOTE = "DELETE-NOTE"

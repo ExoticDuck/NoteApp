@@ -1,7 +1,7 @@
 import React from "react";
 import { NoteType } from "../../App";
 import Note from "../Note/Note";
-import s from "./NoteDisplay.module.css"
+import s from "./NoteDisplay.module.scss"
 
 type NoteDisplayPropsType = {
     notes: Array<NoteType>
@@ -12,6 +12,7 @@ type NoteDisplayPropsType = {
 
 const NoteDisplay = React.memo((props: NoteDisplayPropsType) => {
     let MappedNotes = props.notes.map(note => <Note id={note.id} 
+        key={note.id}
         name={note.name} 
         tag={note.tag} 
         noteText={note.noteText} 

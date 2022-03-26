@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata&family=Merriweather&display=swap');
+
+.Textarea {
+  width:100%;
+  resize: vertical;
+  padding: 15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  height:150px;
+}
+
+.MarkedWord {
+  background-color: lawngreen;
+}
+
+.EditableDiv {
+  width:100%;
+  height:150px;
+  padding: 15px;
+  border-radius:15px;
+  border:0;
+  box-shadow:4px 4px 10px rgba(0,0,0,0.06);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.textDiv {
+  font-family: 'Merriweather', serif;
+  width: 100%;
+  padding: 15px;
+  min-height: 150px;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { TagType } from "../../App";
 import Tag from "./Tag/Tag";
-import s from "./TagsDisplay.module.css"
+import s from "./TagsDisplay.module.scss"
 
 type TagsPropsType = {
     tags: Array<TagType>
@@ -10,7 +10,7 @@ type TagsPropsType = {
 }
 
 
-const TagsDisplay = (props: TagsPropsType) => {
+const TagsDisplay = React.memo((props: TagsPropsType) => {
 
     let mappedTags = props.tags.map(tag => <Tag key={tag.id} name={tag.tagName} id={tag.id} deleteTag={props.deleteTag} selected={tag.selected} selectTag={props.selectTag}/>)
     return(
@@ -18,6 +18,6 @@ const TagsDisplay = (props: TagsPropsType) => {
             {mappedTags}
         </div>
     )
-}
+})
 
 export default TagsDisplay;

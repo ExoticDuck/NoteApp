@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata&family=Merriweather&display=swap');
+
+$background-color: #66a5ad;
+$title-color: #003B46;
+.NoteCard {
+    background-color: rgba($background-color, 0.8);
+    width: 350px;
+    min-height: 400px;
+    box-shadow: 0 8px 13px 5px rgba(0, 0, 0, 0.26);
+    border-radius: 5px;
+    padding: 5px;
+    padding-top: 3px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    margin: 20px;
+    .NoteTitle {
+        font-family: 'Merriweather', serif;;
+        font-size: 20px;
+        color: #003B46;
+        margin-left: 8px;
+        display: inline-block;
+    }
+    .NoteTag {
+        font-family: 'Literata', serif;
+        float: right;
+        margin-right: 10px;
+        border-bottom: 2px solid slategray;
+    }
+}
+

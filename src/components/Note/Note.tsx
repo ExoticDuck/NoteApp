@@ -1,8 +1,8 @@
 import { IconButton } from "@material-ui/core";
 import { Delete } from "@material-ui/icons";
-import React from "react";
+import React, { useCallback } from "react";
 import EditableTextField from "./EditableTextField/EditableTextField";
-import s from './Note.module.css';
+import s from './Note.module.scss';
 
 type NotePropsType = {
     id: string
@@ -16,25 +16,23 @@ type NotePropsType = {
 
 
 const Note = React.memo((props: NotePropsType) => {
+    let {id, name, tag, noteText, ChangeText, addTag, deleteNote} = props
     
-    let addTagCallback = (tagName: string) => {props.addTag(tagName, props.id)}
+    let addTagCallback = useCallback((tagName: string) => {addTag(tagName, id)}, [addTag, id])
     
     return(
         <div className={s.NoteCard}>
-            <h3 className={s.NoteTitle}>{props.name}</h3>
-            <IconButton onClick={() => props.deleteNote(props.id)}>
+            <h3 className={s.NoteTitle}>{name}</h3>
+            <IconButton onClick={() => deleteNote(id)}>
                 <Delete/>
             </IconButton>
-            <div className={s.NoteTag}>{props.tag}</div>
-            {/* <div>
-                {props.noteText}
-            </div> */}
             <EditableTextField 
-            tag={props.tag}
-            text={props.noteText} 
+            tag={tag}
+            text={noteText} 
             addTag={addTagCallback}
-            ChangeText={props.ChangeText} 
+            ChangeText={ChangeText} 
             id={props.id}/>
+            <div className={s.NoteTag}>{tag}</div>
         </div>
     )
 })

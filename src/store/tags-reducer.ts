@@ -1,6 +1,6 @@
 import { v1 } from "uuid"
 import { TagType } from "../App"
-import tagData from "../tagData.json"
+import tagData from "../Data/tagData.json"
 
 const SELECT_TAG = "SELECT-TAG"
 const ADD_TAG = "ADD-TAG"

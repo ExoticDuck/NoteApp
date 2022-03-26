@@ -1,5 +1,6 @@
-import React, { ChangeEvent, FormEvent, FormEventHandler, MouseEvent, useState } from "react";
-import s from "./EditableTextField.module.css"
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+import React, { ChangeEvent, ChangeEventHandler, FormEvent, FormEventHandler, MouseEvent, useCallback, useState } from "react";
+import s from "./EditableTextField.module.scss"
 // import { HighlightWithinTextarea } from 'react-highlight-within-textarea';
 
 type EditableTextFieldPropsType = {
@@ -12,23 +13,20 @@ type EditableTextFieldPropsType = {
 
 
 const EditableTextField = (props: EditableTextFieldPropsType) => {
-    let [value, setValue] = useState<string>(props.text);
+    let {text, id, tag, ChangeText, addTag} = props
+
+    let [value, setValue] = useState<string>(text);
     let [edit, setEdit] = useState<boolean>(false);
 
-
-
-    let onChangeHandler = (e: FormEvent<HTMLDivElement>) => {
-       
-        console.log(e.currentTarget.innerHTML);
-        setValue(e.currentTarget.innerText)
-        
+    let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setValue(e.target.value)
     }
 
-    let getNewTag = () => {
+    let getNewTag = useCallback(() => {
         let hashTagIndex = value.indexOf("#");
         if (hashTagIndex === -1) {
-            props.addTag("#all")
-            props.ChangeText(value, props.id, "#all");
+            addTag("#all")
+            ChangeText(value, id, "#all");
         } else {
             let result = ""
             for (let i = hashTagIndex; i < value.length; i++) {
@@ -38,16 +36,22 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
                     break
                 }
             }
-            props.addTag(result);
-            props.ChangeText(value, props.id, result);
+            addTag(result);
+            ChangeText(value, id, result);
         }
-    }
+    }, [ChangeText, addTag, id, value])
 
     let onDoubleClickHandler = (e: MouseEvent<HTMLDivElement>) => {
         setEdit(true);
-        let MarkedText = props.tag;
-        let editValue = value.replace(MarkedText, `<span className={s.MarkedWord}>${MarkedText}</span>`);
-        setValue(editValue)
+        // let textAreaText = "";
+        // textAreaText = value;
+        // let match = new RegExp(tag, "ig");
+        // let boldText = '<b>'+ tag + '</b>';
+        // let replaced = textAreaText.replace(match, boldText);
+        // setValue(replaced)
+        // let MarkedText = tag;
+        // let editValue = value.replace(MarkedText, `<span className={s.MarkedWord}>${MarkedText}</span>`);
+        // setValue(editValue)
     }
 
     let onBlurHandler = () => {
@@ -58,24 +62,26 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
     if (edit) {
         return (
             <div>
-                {/* <div>
+                <div>
                     <textarea name="text" className={s.Textarea} cols={30} rows={10} value={value} onChange={onChangeHandler} onBlur={onBlurHandler}></textarea>
-                </div> */}
-                <div contentEditable onInput={onChangeHandler} onBlur={onBlurHandler}>{props.text}</div>
+                </div>
+                {/* <div contentEditable onInput={onChangeHandler} onBlur={onBlurHandler} className={s.EditableDiv}>{text}</div> */}
                 {/* <HighlightWithinTextarea
                 value={props.text}
                 highlight={props.id}
             onChange={onChangeHandler}/>*/}
+            
                 </div>  
         )
     } else {
         return (
-            <div onDoubleClick={onDoubleClickHandler}>
+            <div onDoubleClick={onDoubleClickHandler} className={s.textDiv}>
                 <p>
-                    {props.text}
+                    {value}
                 </p>
             </div>
         )
+
     }
 }
 

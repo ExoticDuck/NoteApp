@@ -1,29 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Literata&family=Merriweather&display=swap');
+
+$background-color: #66a5ad;
+$title-color: #003B46;
+
 .Tag {
     display: inline-block;
     width: fit-content;
     height: 30px;
-    /* background-color: lightblue; */
     border-radius: 15px;
-    border: 2px solid lightblue;
     padding: 5px;
-    color: lightblue;
+    color: $title-color;
     text-align: center;
     margin-left: 10px;
+    box-shadow: 0 8px 13px 5px rgba(0, 0, 0, 0.26);
 }
 
 .tagName {
     display: inline-block;
+    color: $title-color;
+    font-family: 'Merriweather', serif;
 }
 .SelectedTag {
     display: inline-block;
     width: fit-content;
     height: 32px;
-    background-color: lightblue;
+    background-color: $background-color;
     border-radius: 15px;
     padding: 5px;
     color: white;
     text-align: center;
     margin-left: 10px;
+    box-shadow: 0 4px 5px 5px rgba(0, 0, 0, 0.26);
 }
 
 .button {
@@ -33,5 +40,5 @@
     width: 20px;
     display: inline-block;
     border-radius: 50%;
-    border: 2px solid lightblue;
+    
 }
