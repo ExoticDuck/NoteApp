@@ -1,17 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Literata&family=Merriweather&display=swap');
 
+$border-color: #66a5ad;
+
 .Textarea {
-  width:100%;
+  scroll-padding-block-start: 10px;
+  font-family: 'Merriweather', serif;
+  font-size: 16px;
+  width: 320px;
   resize: vertical;
+  height: 400px;
   padding: 15px;
   border-radius:15px;
-  border:0;
+  //border: 2px solid $border-color;
   box-shadow:4px 4px 10px rgba(0,0,0,0.06);
-  height:150px;
+  // height:150px;
+  position: relative;
+  background-color: transparent;
+  z-index: 2;
 }
 
-.MarkedWord {
-  background-color: lawngreen;
+.HiglightedBlock {
+  top: 37px;
+  padding: 15px;
+  height: fit-content;
+  position: absolute;
+  width: 320px;
+  font-family: 'Merriweather', serif;
+  p {
+    color: transparent;
+    mark {
+      color: yellow;
+    }
+  }
 }
 
 .EditableDiv {
@@ -26,7 +46,9 @@
 
 .textDiv {
   font-family: 'Merriweather', serif;
-  width: 100%;
+  //border: 2px solid red;
+  width: 320px;
   padding: 15px;
   min-height: 150px;
+  overflow: hidden;
 }

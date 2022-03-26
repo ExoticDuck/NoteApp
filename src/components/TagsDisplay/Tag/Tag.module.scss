@@ -19,6 +19,7 @@ $title-color: #003B46;
     display: inline-block;
     color: $title-color;
     font-family: 'Merriweather', serif;
+    cursor: pointer;
 }
 .SelectedTag {
     display: inline-block;
@@ -34,11 +35,12 @@ $title-color: #003B46;
 }
 
 .button {
+    font-weight: 900;
     margin-left: 5px;
     margin-top: 2px;
     text-align: center;
     width: 20px;
     display: inline-block;
     border-radius: 50%;
-    
+    cursor: pointer;
 }

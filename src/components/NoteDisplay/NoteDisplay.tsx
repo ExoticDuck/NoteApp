@@ -8,6 +8,7 @@ type NoteDisplayPropsType = {
     changeText: (newValue: string, id: string, newTag: string) => void
     addTag: (tagName: string, noteId: string) => void
     deleteNote: (npteId: string) => void
+    changeNoteTitle: (newValue: string, noteId: string) => void
 }
 
 const NoteDisplay = React.memo((props: NoteDisplayPropsType) => {
@@ -18,7 +19,8 @@ const NoteDisplay = React.memo((props: NoteDisplayPropsType) => {
         noteText={note.noteText} 
         addTag={props.addTag}
         ChangeText={props.changeText}
-        deleteNote={props.deleteNote}/>)
+        deleteNote={props.deleteNote}
+        changeNoteTitle={props.changeNoteTitle}/>)
     return(
         <div className={s.NoteDisplay}>
             {MappedNotes}

@@ -6,7 +6,7 @@ import TagsDisplay from './components/TagsDisplay/TagsDisplay';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppRootStateType } from './store/store';
 import { addTagAC, deleteTagAC, selectTagAC } from './store/tags-reducer';
-import { addNoteAC, changeNoteAC, deleteNoteAC } from './store/notes-reducer';
+import { addNoteAC, changeNoteAC, changeNoteTitleAC, deleteNoteAC } from './store/notes-reducer';
 
 export type NoteType = {
   id: string
@@ -51,6 +51,10 @@ function App() {
     let ChangeText = (newValue: string, id: string, newTag: string) => {
       dispatch(changeNoteAC(newValue, id, newTag));
     }
+    
+    let changeNoteTitle = (newValue: string, id: string) => {
+      dispatch(changeNoteTitleAC(newValue, id));
+    }
 
     let notesForDisplay = notes;
     if(selectedTag !== "#all") {
@@ -61,7 +65,7 @@ function App() {
     <div className="App">
       <AddItemForm addNote={addNote}/>
       <TagsDisplay tags={tags} deleteTag={deleteTag} selectTag={selectTag}/>
-      <NoteDisplay notes={notesForDisplay} changeText={ChangeText} addTag={addTag} deleteNote={deleteNote}/>
+      <NoteDisplay notes={notesForDisplay} changeText={ChangeText} addTag={addTag} deleteNote={deleteNote} changeNoteTitle={changeNoteTitle}/>
     </div>
   );
 }

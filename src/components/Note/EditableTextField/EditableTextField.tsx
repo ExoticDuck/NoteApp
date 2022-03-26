@@ -1,7 +1,7 @@
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React, { ChangeEvent, ChangeEventHandler, FormEvent, FormEventHandler, MouseEvent, useCallback, useState } from "react";
 import s from "./EditableTextField.module.scss"
-// import { HighlightWithinTextarea } from 'react-highlight-within-textarea';
+//import  HighlightWithinTextarea  from 'react-highlight-within-textarea';
 
 type EditableTextFieldPropsType = {
     text: string
@@ -13,12 +13,18 @@ type EditableTextFieldPropsType = {
 
 
 const EditableTextField = (props: EditableTextFieldPropsType) => {
-    let {text, id, tag, ChangeText, addTag} = props
+    let { text, id, tag, ChangeText, addTag } = props
 
     let [value, setValue] = useState<string>(text);
     let [edit, setEdit] = useState<boolean>(false);
+    let [markedupText, setMarkedUpText] = useState<string>("")
+
+
 
     let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        if(markedupText) {
+            setTimeout(() => setMarkedUpText(""), 1000) 
+        }
         setValue(e.target.value)
     }
 
@@ -43,35 +49,27 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
 
     let onDoubleClickHandler = (e: MouseEvent<HTMLDivElement>) => {
         setEdit(true);
-        // let textAreaText = "";
-        // textAreaText = value;
-        // let match = new RegExp(tag, "ig");
-        // let boldText = '<b>'+ tag + '</b>';
-        // let replaced = textAreaText.replace(match, boldText);
-        // setValue(replaced)
-        // let MarkedText = tag;
-        // let editValue = value.replace(MarkedText, `<span className={s.MarkedWord}>${MarkedText}</span>`);
-        // setValue(editValue)
+        let MarkedText = tag;
+        let editValue = value.replaceAll(MarkedText, '<mark>' + MarkedText + '</mark>');
+        let tagWord = tag.slice(1);
+        editValue = value.replaceAll(tagWord, '<mark>' + tagWord + '</mark>');
+        setMarkedUpText('<p>' + editValue + '</p>')
     }
 
     let onBlurHandler = () => {
         setEdit(false);
         getNewTag();
     }
-    
+  
+
     if (edit) {
         return (
             <div>
                 <div>
-                    <textarea name="text" className={s.Textarea} cols={30} rows={10} value={value} onChange={onChangeHandler} onBlur={onBlurHandler}></textarea>
+                    <textarea name="text" className={s.Textarea} cols={35} rows={10} value={value} onChange={onChangeHandler} onBlur={onBlurHandler}></textarea>
                 </div>
-                {/* <div contentEditable onInput={onChangeHandler} onBlur={onBlurHandler} className={s.EditableDiv}>{text}</div> */}
-                {/* <HighlightWithinTextarea
-                value={props.text}
-                highlight={props.id}
-            onChange={onChangeHandler}/>*/}
-            
-                </div>  
+                <div dangerouslySetInnerHTML={{__html: markedupText}} className={s.HiglightedBlock}></div>
+            </div>
         )
     } else {
         return (

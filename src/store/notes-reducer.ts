@@ -2,9 +2,10 @@ import { v1 } from "uuid"
 import { NoteType } from "../App"
 import noteData from "../Data/noteData.json"
 
-const ADD_NOTE = "ADD-NOTE"
-const DELETE_NOTE = "DELETE-NOTE"
-const CHANGE_NOTE = "CHANGE-NOTE"
+const ADD_NOTE = "ADD-NOTE";
+const DELETE_NOTE = "DELETE-NOTE";
+const CHANGE_NOTE = "CHANGE-NOTE";
+const CHANGE_NOTE_TITLE = "CHANGE_NOTE_TITLE";
 
 const initialState = noteData.map(note => {
     return {
@@ -26,12 +27,16 @@ export const notesReducer = (state: Array<NoteType> = initialState, action: Acti
             let newNotes = state.map(note => note.id === action.payload.noteId ? { ...note, noteText: action.payload.newValue, tag: action.payload.newTag } : note)
             return [...newNotes]
         }
+        case CHANGE_NOTE_TITLE : {
+            let newNotes = state.map(note => note.id === action.payload.noteId ? {...note, name: action.payload.newValue} : note);
+            return [...newNotes]
+        }
         default:
             return state
     }
 }
 
-export type ActionsType = addNoteACType | deleteNoteACType | changeNoteACType;
+export type ActionsType = addNoteACType | deleteNoteACType | changeNoteACType | changeNoteTitleACType;
 
 export function addNoteAC(title: string) {
     return {
@@ -64,4 +69,15 @@ export function changeNoteAC(newValue: string, noteId: string, newTag: string) {
     } as const
 }
 export type changeNoteACType = ReturnType<typeof changeNoteAC>
+
+export function changeNoteTitleAC(newValue: string, noteId: string) {
+    return {
+        type: CHANGE_NOTE_TITLE,
+        payload: {
+            newValue,
+            noteId
+        }
+    } as const
+}
+export type changeNoteTitleACType = ReturnType<typeof changeNoteTitleAC>
 
