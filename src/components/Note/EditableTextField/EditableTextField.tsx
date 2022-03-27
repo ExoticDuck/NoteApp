@@ -1,7 +1,6 @@
 import { setSelectionRange } from "@testing-library/user-event/dist/utils";
 import React, { ChangeEvent, ChangeEventHandler, FormEvent, FormEventHandler, MouseEvent, useCallback, useState } from "react";
 import s from "./EditableTextField.module.scss"
-//import  HighlightWithinTextarea  from 'react-highlight-within-textarea';
 
 type EditableTextFieldPropsType = {
     text: string
@@ -25,7 +24,10 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
         if(markedupText) {
             setTimeout(() => setMarkedUpText(""), 1000) 
         }
-        setValue(e.target.value)
+        if(e.target.value.length <= 740) {
+            setValue(e.target.value)
+        }
+        
     }
 
     let getNewTag = useCallback(() => {
@@ -60,6 +62,8 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
         setEdit(false);
         getNewTag();
     }
+
+    
   
 
     if (edit) {

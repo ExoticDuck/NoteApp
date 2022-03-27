@@ -1,3 +1,5 @@
+import { IconButton } from "@material-ui/core";
+import { Delete } from "@material-ui/icons";
 import React, { useCallback } from "react";
 import s from "./Tag.module.scss"
 
@@ -17,7 +19,11 @@ const Tag = (props: TagPropsType) => {
     
     return(
         <div className={selected ? s.SelectedTag : s.Tag}>
-            <div className={s.tagName} onClick={onTagClickHandler}>{name}</div><div className={s.button} onClick={onButtonClickHandler}>X</div>
+            <div className={s.tagName} onClick={onTagClickHandler}>{name}</div><div className={s.button}>
+            <IconButton onClick={onButtonClickHandler}>
+                <Delete/>
+            </IconButton>
+            </div>
         </div>
     )
 }

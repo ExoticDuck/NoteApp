@@ -10,22 +10,26 @@ type EditableSpanPropsType = {
 const EditableSpan = (props: EditableSpanPropsType) => {
     
     let [editMode, setEditMode] = useState<boolean>(false);
-    let [title, setTitle] = useState<string>(props.value)
+    let [title, setTitle] = useState<string>(props.value);
+    let [error, setError] = useState<string | null>(null);
     function doubleClickHandler() {
         setEditMode(true);
     }
 
     function activateViewMode() {
-        setEditMode(false)
-        props.onChange(title);
+        if(title.trim() !== "") {
+            setEditMode(false)
+            props.onChange(title);
+        } else setError("Title is required!");
     }
     
     function changeTitle(e: ChangeEvent<HTMLInputElement>) {
+        if(error) setError(null);
         setTitle(e.currentTarget.value);
     }
 
     return(
-        editMode ? <TextField value={title} onChange={changeTitle} autoFocus onBlur={activateViewMode}/> :
+        editMode ? <TextField value={title} onChange={changeTitle} autoFocus error={!!error} helperText={error} onBlur={activateViewMode}/> :
         <span onDoubleClick={doubleClickHandler} className={s.NoteTitle}>{props.value}</span>
     )
 }

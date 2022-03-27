@@ -36,13 +36,6 @@ const Note = React.memo((props: NotePropsType) => {
             ChangeText={ChangeText} 
             id={props.id}/>
             <div className={s.NoteTag}>{tag}</div>
-            {/* <Edtf
-            tag={tag}
-            text={noteText} 
-            addTag={addTagCallback}
-            ChangeText={ChangeText} 
-            id={props.id}/>
-            <div className={s.NoteTag}>{tag}</div> */}
         </div>
     )
 })

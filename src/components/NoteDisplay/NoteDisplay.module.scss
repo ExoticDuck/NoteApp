@@ -2,9 +2,13 @@
     box-sizing: border-box;
     display: block;
     width: 100%;
-    padding: 30px 80px;
+    padding: 15px 80px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+    @media (max-width: 425px) {
+        padding: 0;
+        height: fit-content;
+    }
 }

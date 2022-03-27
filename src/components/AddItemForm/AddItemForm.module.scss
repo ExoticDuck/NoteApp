@@ -1,5 +1,5 @@
-$button-color: #003B46;
-$button-text-color: #C4DFE6;
+$brown-color: #A06B54;
+$button-text-color: #FEF9EF;
 .AddItemForm {
     box-sizing: border-box;
     display: block;
@@ -9,7 +9,7 @@ $button-text-color: #C4DFE6;
     margin-bottom: 30px;
     position: relative;
     input {
-        border: 1px solid $button-color;
+        border: 1px solid $brown-color;
         width: 180px;
         height: 36px;
         margin-top: 30px;
@@ -18,18 +18,26 @@ $button-text-color: #C4DFE6;
         border-radius: 10px 0 0 10px;
         position: relative;
         display: inline-block;
+        color: $brown-color;
+        outline: none;
+        &::placeholder {
+            color: $brown-color;
+        }
     }
     button {
         position: absolute;
         top: 30px;
         display: inline-block;
-        background-color: $button-color;
+        background-color: $brown-color;
         color: $button-text-color;
         font-size: 30px;
         height: 40px;
         width: 41px;
         border: 0;
         border-radius: 0 10px 10px 0;
+    }
+    .Error {
+        color: red;
     }
 }
 

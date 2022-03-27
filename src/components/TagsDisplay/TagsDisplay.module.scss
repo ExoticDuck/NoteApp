@@ -1,16 +1,17 @@
-$title-color: #003B46;
-
 .TagsDisplay {
     display: block;
     width: fit-content;
     height: 60px;
     margin-bottom: 30px;
     margin: 0 auto;
-    margin-top: 30px;
-    border-bottom: 2px solid $title-color;
+    margin-top: 50px;
     padding: 0 90px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
+    @media (max-width: 530px) {
+        padding: 0;
+        height: fit-content;
+    }
 }
