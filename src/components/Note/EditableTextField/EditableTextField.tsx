@@ -41,7 +41,7 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
                 if (value[i] !== " ") {
                     result = result + value[i];
                 } else {
-                    break
+                    break;
                 }
             }
             addTag(result);
@@ -61,6 +61,9 @@ const EditableTextField = (props: EditableTextFieldPropsType) => {
     let onBlurHandler = () => {
         setEdit(false);
         getNewTag();
+        if(value.trim() === "") {
+            setValue("Enter some text")
+        }
     }
 
     
