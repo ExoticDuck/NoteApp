@@ -1,5 +1,4 @@
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
-import React, { ChangeEvent, ChangeEventHandler, FormEvent, FormEventHandler, MouseEvent, useCallback, useState } from "react";
+import React, { ChangeEvent, MouseEvent, useCallback, useState } from "react";
 import s from "./EditableTextField.module.scss"
 
 type EditableTextFieldPropsType = {
